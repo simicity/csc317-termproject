@@ -1,8 +1,115 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #041b2d;
 }
 
-a {
-  color: #00B7FF;
+label {
+    color: rgb(76, 163, 221);
+}
+
+.card {
+    border: none;
+    color: white;
+    background-color: #203744;
+}
+
+#navbar {
+    color: white;
+    background-color: #041b2d;
+    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
+}
+
+#btn-nav-newpost {
+    background-image: linear-gradient(to bottom right, #ea4492, #041b2d);
+    border: none;
+    color: white;
+    padding: 0.8rem;
+}
+
+#btn-nav-login {
+    background-color: #004e9a;
+    color: white;
+}
+
+#btn-nav-registration {
+    color: white;
+}
+
+.form-container {
+    background-color: #eaf4fc;
+    width: 400px;
+    margin: 30px auto;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+.post-container {
+    max-width: 750px;
+    width: 90%;
+    color: white;
+    margin: auto;
+    padding: 3rem;
+}
+
+.validation-alert {
+    display: none;
+    color: rgb(216, 22, 22);
+    padding-left: 1rem;
+}
+
+.btn-submit {
+    background-color: #ea4492;
+    color: white;
+}
+
+.btn-submit:hover {
+    background-color: #ff9cda;
+}
+
+.btn-load {
+    border-color: #ea4492;
+    color: #ea4492;
+}
+
+.btn-load:hover {
+    border-color: #ff9cda;
+    color: #ff9cda;
+}
+
+#items-container {
+    width: 80%;
+    margin: 50px auto;
+    columns: 5;
+}
+
+@media screen and (max-width: 1200px) {
+    #items-container {
+        columns: 4;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    #items-container {
+        columns: 3;
+    }
+}
+
+.image-title {
+    line-height: 1rem;
+    max-height: 50px;
+}
+
+#form-comment {
+    border-radius: 10px;
+}
+
+.list-group-item-color { 
+    background-color: #203744; 
+}
+
+#footer-items {
+    color: #428cd4;
+}
+
+#footer-cr {
+    color: #004e9a;
 }

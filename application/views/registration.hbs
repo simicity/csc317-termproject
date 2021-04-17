@@ -1,0 +1,40 @@
+<div class="form-container">
+    <h1>Registration Form</h1>
+    <form>
+        <div class="mb-3">
+            <label for="username"><small>Username</small></label><br/>
+            <input type="text" class="form-control form-control-sm" name="username" id="username" required/>
+            <small id="validation-alert-username1" class="form-text validation-alert">*Username must begins with a character.</small>
+            <small id="validation-alert-username2" class="form-text validation-alert">*Username must contain 3+ alphanumeric characters.</small>
+        </div>
+        <div class="mb-3">
+            <label for="email"><small>Email</small></label>
+            <input type="text" class="form-control form-control-sm" name="email" id="email" required/>
+            <small id="validation-alert-email" class="form-text validation-alert">*The email address entered is invalid.</small>
+        </div>
+        <div class="mb-3">
+            <label for="password"><small>Password</small></label>
+            <input type="password" class="form-control form-control-sm" name="password" id="password" required/>
+            <small id="validation-alert-password1" class="form-text validation-alert">*Password must contain 8+ more characters.</small>
+            <small id="validation-alert-password2" class="form-text validation-alert">*Password must contain at least 1 upper case letter, 1 numebr and 1 special characters.</small>
+        </div>
+        <div class="mb-3">
+            <label for="confirm-password"><small>Confirm Password</small></label>
+            <input type="password" class="form-control form-control-sm" name="confirm-password" id="confirm-password" required/>
+            <small id="validation-alert-confirm-password1" class="form-text validation-alert">*Password must contain 8+ more characters.</small>
+            <small id="validation-alert-confirm-password2" class="form-text validation-alert">*Password must contain at least 1 upper case letter, 1 numebr and 1 special characters.</small>
+            <small id="validation-alert-confirm-password3" class="form-text validation-alert">*Password must match to comfirm password.</small>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="confirm-age" id="confirm-age" required/>
+            <label class="form-check-label" for="confirm-age"><small>I am 13+ years old.</small></label>
+            <br>
+            <input type="checkbox" class="form-check-input" name="confirm-policy" id="confirm-policy" required/>
+            <label class="form-check-label" for="confirm-policy"><small>I accept <a href="#">TOS</a> and <a href="#">Privacy Rules</a>.</small></label>
+        </div>
+            <small id="validation-alert-confirm-age" class="form-text validation-alert">*You must select that you are 13+ years old.</small>
+            <small id="validation-alert-confirm-policy" class="form-text validation-alert">*You must select TOS and Privacy rules.</small>
+        <br>
+        <button type="submit" id="submit-registration" class="btn btn-submit">Sign up</button>
+    </form>
+</div>
