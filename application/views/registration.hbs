@@ -1,6 +1,7 @@
+<script defer src="/public/js/formValidation.js"></script>
 <div class="form-container">
     <h1>Registration Form</h1>
-    <form>
+    <form method="POST" action="/users/register" enctype="application/x-www-form-urlencoded">
         <div class="mb-3">
             <label for="username"><small>Username</small></label><br/>
             <input type="text" class="form-control form-control-sm" name="username" id="username" required/>
@@ -20,20 +21,20 @@
         </div>
         <div class="mb-3">
             <label for="confirm-password"><small>Confirm Password</small></label>
-            <input type="password" class="form-control form-control-sm" name="confirm-password" id="confirm-password" required/>
+            <input type="password" class="form-control form-control-sm" name="confirmPassword" id="confirm-password" required/>
             <small id="validation-alert-confirm-password1" class="form-text validation-alert">*Password must contain 8+ more characters.</small>
             <small id="validation-alert-confirm-password2" class="form-text validation-alert">*Password must contain at least 1 upper case letter, 1 numebr and 1 special characters.</small>
             <small id="validation-alert-confirm-password3" class="form-text validation-alert">*Password must match to comfirm password.</small>
         </div>
         <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="confirm-age" id="confirm-age" required/>
+            <input type="checkbox" class="form-check-input" name="confirmAge" id="confirm-age" required/>
             <label class="form-check-label" for="confirm-age"><small>I am 13+ years old.</small></label>
             <br>
-            <input type="checkbox" class="form-check-input" name="confirm-policy" id="confirm-policy" required/>
+            <input type="checkbox" class="form-check-input" name="confirmPolicy" id="confirm-policy" required/>
             <label class="form-check-label" for="confirm-policy"><small>I accept <a href="#">TOS</a> and <a href="#">Privacy Rules</a>.</small></label>
         </div>
-            <small id="validation-alert-confirm-age" class="form-text validation-alert">*You must select that you are 13+ years old.</small>
-            <small id="validation-alert-confirm-policy" class="form-text validation-alert">*You must select TOS and Privacy rules.</small>
+        <small id="validation-alert-confirm-age" class="form-text validation-alert">*You must select that you are 13+ years old.</small>
+        <small id="validation-alert-confirm-policy" class="form-text validation-alert">*You must select TOS and Privacy rules.</small>
         <br>
         <button type="submit" id="submit-registration" class="btn btn-submit">Sign up</button>
     </form>

@@ -6,6 +6,17 @@ label {
     color: rgb(76, 163, 221);
 }
 
+#flash-message {
+    position: fixed;
+    left: 50%;
+    top: 15%;
+    transform: translate(-50%, 0);
+}
+
+#flash-message div {
+    text-align: center;
+}
+
 .card {
     border: none;
     color: white;
@@ -30,7 +41,7 @@ label {
     color: white;
 }
 
-#btn-nav-registration {
+#btn-nav-registration, #btn-nav-logout {
     color: white;
 }
 

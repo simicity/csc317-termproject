@@ -18,8 +18,12 @@
       </form>
     </div>
     <div class="collapse navbar-collapse justify-content-end navbarHome">
-      <a href="/registration" id="btn-nav-registration" class="btn active nav-item mr-sm-2" role="button" aria-pressed="true">Sign up</a>
+      {{#if logged}}
+      <a id="btn-nav-logout" class="btn active nav-item mr-sm-2" role="button" aria-pressed="true">Log out</a>
+      {{else}}
+      <a href="/register" id="btn-nav-registration" class="btn active nav-item mr-sm-2" role="button" aria-pressed="true">Sign up</a>
       <a href="/login" id="btn-nav-login" class="btn active nav-item mr-sm-2" role="button" aria-pressed="true">Log in</a>
+      {{/if}}
     </div>
   </div>
 </nav>

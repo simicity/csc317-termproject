@@ -18,4 +18,4 @@ class UserError extends Error {
 	}
 }
 
-module.exports = userError;
+module.exports = UserError;

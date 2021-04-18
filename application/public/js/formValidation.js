@@ -184,7 +184,7 @@ inputConfirmPassword.onchange = function(event) {
 }
 
 submitRegistration.onclick = function(event) {
-    var valid = validateForm();
+    var valid = true;//validateForm();
     console.log("final validation=" + valid);
     return valid;
 }

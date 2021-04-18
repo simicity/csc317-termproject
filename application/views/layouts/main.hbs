@@ -11,8 +11,7 @@
 
   <link rel="stylesheet" href="/public/css/style.css">
 
-  <script defer src="/public/js/fetchPost.js"></script>
-  <script defer src="/public/js/formValidation.js"></script>
+  <script defer src="/public/js/frontend.js"></script>
   
   <title>{{title}}</title>
 </head>
@@ -24,7 +23,26 @@
 
   {{>navbar}}
   {{{body}}}
+  {{#if (emptyObject messages)}}
+  {{>flash}}
+  {{/if}}
   {{>footer}}
+
+  {{#if logged}}
+    <script>
+      let ele = document.getElementById('btn-nav-logout');
+      if(ele) {
+        ele.onclick = (event) => {
+          fetch('/users/logout', {
+            method: "POST"
+          })
+          .then((data) => {
+            location.replace('/');
+          })
+        }
+      }
+    </script> 
+  {{/if}}
 
 </body>
 </html>
