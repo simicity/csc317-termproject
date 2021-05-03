@@ -8,14 +8,14 @@
       <a href="/postimage" id="btn-nav-newpost" class="btn active nav-item mr-sm-2" role="button" aria-pressed="true">New Post</a>
     </div>
     <div class="collapse navbar-collapse justify-content-center navbarHome mt-3">
-      <form class="form-row">
+      <div class="form-row">
         <div class="form-group col-sm-8">
-          <input class="form-control mr-sm-2 pb-1 list-group-item-color" type="text" placeholder="Search" aria-label="Send">
+          <input id="search-text" class="form-control mr-sm-2 pb-1 list-group-item-color" type="text" placeholder="Search" aria-label="Send">
         </div>
         <div class="form-group col-auto">
-          <button class="btn btn-outline-success mr-sm-2 pb-1" type="submit">Search</button>
+          <button id="search-btn" class="btn btn-outline-success mr-sm-2 pb-1">Search</button>
         </div>
-      </form>
+      </div>
     </div>
     <div class="collapse navbar-collapse justify-content-end navbarHome">
       {{#if logged}}

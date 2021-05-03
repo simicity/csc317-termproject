@@ -1,18 +1,18 @@
 <div class="post-container">
     <h1>Post Images</h1>
-    <form>
+    <form method="POST" enctype="multipart/form-data" action='/posts/createpost'>
         <div class="mb-3">
             <label for="title"><small>Title</small></label>
             <input type="text" class="form-control form-control-sm" name="title" required/>
         </div>
         <div class="mb-3">
             <label for="description"><small>Description</small></label>
-            <textarea class="form-control" id="description" row="5"></textarea>
+            <textarea class="form-control form-control-sm" id="description" row="5" name="description" required></textarea>
         </div>
         <div class="mb-3">
-            <label for="img"><small>Images</small></label>
+            <label for="uploadImage"><small>Images</small></label>
             <br>
-            <input type="file" class="form-control-file" name="img" accept="image/*" required/>
+            <input type="file" class="form-control-file" name="uploadImage" accept="image/*" required/>
         </div>
         <div class="form-check">
             <input type="checkbox" class="form-check-input" name="confirm-policy" required/>

@@ -11,6 +11,7 @@ label {
     left: 50%;
     top: 15%;
     transform: translate(-50%, 0);
+    z-index: 9999;
 }
 
 #flash-message div {
@@ -21,6 +22,28 @@ label {
     border: none;
     color: white;
     background-color: #203744;
+}
+
+.card-columns {
+    column-count: 5;
+}
+
+@media screen and (max-width: 1200px) {
+    .card-columns {
+        column-count: 4;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .card-columns {
+        column-count: 3;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .card-columns {
+        column-count: 1;
+    }
 }
 
 #navbar {
@@ -55,7 +78,6 @@ label {
 
 .post-container {
     max-width: 750px;
-    width: 90%;
     color: white;
     margin: auto;
     padding: 3rem;
@@ -84,24 +106,6 @@ label {
 .btn-load:hover {
     border-color: #ff9cda;
     color: #ff9cda;
-}
-
-#items-container {
-    width: 80%;
-    margin: 50px auto;
-    columns: 5;
-}
-
-@media screen and (max-width: 1200px) {
-    #items-container {
-        columns: 4;
-    }
-}
-
-@media screen and (max-width: 1000px) {
-    #items-container {
-        columns: 3;
-    }
 }
 
 .image-title {

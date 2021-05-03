@@ -109,6 +109,7 @@ router.post('/login', (req, res, next) => {
 	.then(([results, fields]) => {
 		if(results && results.length == 1) {
 			let hashedPassword = results[0].password;
+			userId = results[0].id;
 			return bcrypt.compare(password, hashedPassword);
 		}
 		else {

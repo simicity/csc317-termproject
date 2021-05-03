@@ -18,4 +18,4 @@ class PostError extends Error {
 	}
 }
 
-module.exports = postError;
+module.exports = PostError;

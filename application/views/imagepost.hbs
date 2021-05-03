@@ -1,11 +1,13 @@
 <div class="d-flex p-2">
     <div class="post-container">
-        <h2>title</h2>
-        <small><b>author</b></small>
-        <small>・</small>
-        <small class="text-muted">00:00</small>
+        <img src="/{{currentPost.photopath}}" class="my-3" alt="No Image">
         <br>
-        <img src="#" class="my-3" alt="No Image">
+        <h2>{{currentPost.title}}</h2>
+        <small><b>{{currentPost.username}}</b></small>
+        <small>・</small>
+        <small class="text-muted">{{currentPost.created}}</small>
+        <div>{{currentPost.description}}</div>
+        <br>
         <ul id="form-comment" class="list-group list-group-flush">
             <li class="list-group-item list-group-item-color">
                 <form class="form-row mt-2">
