@@ -12,8 +12,8 @@ formValidation.validatePassword = function(password) {
     return /.{8,}/.test(password) && /[0-9]+/.test(password) && /[A-Z]+/.test(password) && /[/*\-+!@#$\^&*]+/.test(password);
 }
 
-formValidation.validateConfirmPassword = function(confirmPassword) {
-    return inputPassword.value == confirmPassword;
+formValidation.validateConfirmPassword = function(password, confirmPassword) {
+    return password == confirmPassword;
 }
 
 module.exports = formValidation;

@@ -10,30 +10,76 @@
         <br>
         <ul id="form-comment" class="list-group list-group-flush">
             <li class="list-group-item list-group-item-color">
-                <form class="form-row mt-2">
+                <div class="form-row mt-2">
                     <div class="form-group col-10">
-                        <input class="form-control list-group-item-color" type="text" placeholder="Write a comment" aria-label="Send">
+                        <input id="comment-text" class="form-control list-group-item-color" type="text" placeholder="Write a comment" aria-label="Send">
                     </div>
                     <div class="form-group col-auto">
-                        <button class="btn btn-submit" type="submit">Send</button>
+                        <button id="comment-btn" class="btn btn-submit">Send</button>
                     </div>
-                </form>
+                </div>
             </li>
             <li class="list-group-item list-group-item-color">
                 <h5>Comments</h5>
             </li>
-            <li class="list-group-item list-group-item-color">
-                <div class="d-flex w-100 justify-content-between">
-                  <small class="mb-1">username</small>
-                  <small class="text-muted">00:00</small>
-                </div>
-                <p class="mb-1">This is a sample comment.</p>
-            </li>
-            <li class="list-group-item list-group-item-color">
-                <div class="d-flex w-100 justify-content-center">
-                    <button type="button" class="btn btn-load">Load more comment</button>
-                </div>
-            </li>
+
+            {{#each currentPost.comments}}
+                {{> comment this}}
+            {{/each}}
+            
         </ul>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('span[class=date-posted]').forEach((postedDate) => {
+            postedDate.textContent = new Date(postedDate.textContent).toLocaleString();
+        });
+    });
+
+    function addMessage(data) {
+        let templete = document.createElement('templete');
+        templete.innerHTML = 
+        `<li id="message-${data.id}" class="list-group-item list-group-item-color">
+            <div class="d-flex w-100 justify-content-between">
+                <span><small class="mb-1">@${data.username}</small></span>
+                <span class="date-posted">${new Date().toLocaleString()}</span>
+            </div>
+            <p class="mb-1">${data.comment}</p>
+        </li>`;
+        document.getElementById('form-comment').childNodes[3].after(templete.firstChild);
+    }
+
+    document.getElementById('comment-btn').onclick = (event) => {
+        let commentText = document.getElementById('comment-text').value;
+        let postId = document.location.pathname.match(/\d+/g).map(Number)[0];
+
+        if(!commentText) {
+            return;
+        }
+
+        let fetchOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "Application/json"
+            },
+            body: JSON.stringify({
+                comment: commentText,
+                postId: postId
+            })
+        }
+        
+        fetch('/comments/create', fetchOptions)
+        .then((response) => response.json())
+        .then((data) => {
+            if(data.code == 1) {
+                addMessage(data);
+            }
+            else {
+                addFlashFromFrontEnd(data.message, data.status);
+            }
+        })
+        .catch((err) => console.log(err));
+    };
+</script>

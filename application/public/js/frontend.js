@@ -12,14 +12,14 @@ function setFlashFadeOut(flashMessageElement) {
 	}, 1300);
 }
 
-function addFlashFromFrontEnd(message) {
+function addFlashFromFrontEnd(message, level) {
 	let flashMessageDiv = document.createElement('div');
 	let innerFlashDiv = document.createElement('div');
 	let innerTextNode = document.createTextNode(message);
 	innerFlashDiv.appendChild(innerTextNode);
 	flashMessageDiv.appendChild(innerFlashDiv);
 	flashMessageDiv.setAttribute('id', 'flash-message');
-	innerFlashDiv.setAttribute('class', 'alert alert-info');
+	innerFlashDiv.setAttribute('class', `alert alert-${level}`);
 	document.getElementsByTagName('body')[0].appendChild(flashMessageDiv);
 	setFlashFadeOut(flashMessageDiv);
 }
@@ -54,7 +54,7 @@ function executeSearch() {
 		});
 		mainContent.innerHTML = newMainContentHTML;
 		if(data_json.message) {
-			addFlashFromFrontEnd(data_json.message);
+			addFlashFromFrontEnd(data_json.message, data.status);
 		}
 	})
 	.catch((err) => console.log(err));
