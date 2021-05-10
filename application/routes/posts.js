@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const { successPrint, errorPrint } = require('../helpers/debug/debugprinters');
+var { deletePostByPostId } = require('../middleware/postmiddleware');
 var sharp = require('sharp');
 var multer = require('multer');
 var crypto = require('crypto');
@@ -83,7 +84,7 @@ router.get('/search', async(req, res, next) => {
 				});
 			}
 			else {
-				let results = await PostModel.getNRecentPosts(8);
+				let results = await PostModel.getNRecentPosts(100);
 				res.send({
 					message: "No results were found for your search but here are the 8 most recent posts",
 					results: results
@@ -93,6 +94,26 @@ router.get('/search', async(req, res, next) => {
 	}
 	catch(err) {
 		next(err);
+	}
+});
+
+router.get('/delete/:id(\\d+)', function(req, res, next) {
+	if(!req.session.username) {
+		errorPrint("must be logged in to delete a post");
+		res.json({
+			code: -1,
+			status: "danger",
+			message: "Must be logged in to delete a post"
+		});
+	}
+	else {
+		try {
+			deletePostByPostId(req.params.id);
+			res.redirect('/');
+		}
+		catch(err) {
+			next(err);
+		}
 	}
 });
 

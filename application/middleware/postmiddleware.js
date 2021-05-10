@@ -1,10 +1,10 @@
-const {getNRecentPosts, getPostById} = require('../models/Posts');
-const {getCommentsForPost} = require('../models/Comments');
+const {getNRecentPosts, getPostById, deletePostById} = require('../models/Posts');
+const {getCommentsForPost, deleteCommentsForPost} = require('../models/Comments');
 const postMiddleware = {}
 
 postMiddleware.getRecentPosts = async function(req, res, next) {
 	try {
-		let results = await getNRecentPosts(8);
+		let results = await getNRecentPosts(100);
 		res.locals.results = results;
 		if(results.length == 0) {
 			req.flash('error', 'There are no post created yet');
@@ -22,6 +22,7 @@ postMiddleware.getPostById = async function(req, res, next) {
 		let results = await getPostById(postId);
 		if(results && results.length) {
 			res.locals.currentPost = results[0];
+			res.locals.currentPost.postId = postId;
 			next();
 		}
 		else {
@@ -43,6 +44,15 @@ postMiddleware.getCommentsByPostId = async function(req, res, next) {
 	}
 	catch(err) {
 		next(err);
+	}
+}
+
+postMiddleware.deletePostByPostId = async function(postId) {
+	try {
+		await deletePostById(postId);
+		await deleteCommentsForPost(postId);
+	}
+	catch(err) {
 	}
 }
 

@@ -50,4 +50,12 @@ PostModel.getPostById = (postId) => {
 	.catch((err) => Promise.reject(err));
 }
 
+PostModel.deletePostById = (postId) => {
+	return db.execute("DELETE FROM posts WHERE id = ?", [postId])
+	.then(([results, fields]) => {
+		return Promise.resolve(results);
+	})
+	.catch((err) => Promise.reject(err));
+}
+
 module.exports = PostModel;
