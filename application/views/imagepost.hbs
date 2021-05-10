@@ -1,6 +1,6 @@
 <div class="d-flex p-2">
     <div class="post-container">
-        <img src="/{{currentPost.photopath}}" class="my-3" alt="No Image">
+        <img src="/{{currentPost.photopath}}" class="image-post my-3" alt="No Image">
         <br>
         <h2>{{currentPost.title}}</h2>
         <small><b>{{currentPost.username}}</b></small>
@@ -8,7 +8,8 @@
         <small class="text-muted">{{currentPost.created}}</small>
         <div>{{currentPost.description}}</div>
         <br>
-        <ul id="form-comment" class="list-group list-group-flush">
+        <a href="/posts/delete/{{currentPost.postId}}"><small class="text-muted">delete</small></a>
+        <ul id="form-comment" class="list-group list-group-flush mt-3">
             <li class="list-group-item list-group-item-color">
                 <div class="form-row mt-2">
                     <div class="form-group col-10">
