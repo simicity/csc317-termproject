@@ -29,4 +29,12 @@ CommentModel.getCommentsForPost = (postId) => {
 	.catch((err) => Promise.reject(err));
 }
 
+CommentModel.getNumberOfCommentById = (postId) => {
+	return db.execute("SELECT * FROM comments WHERE fk_postid = ?", [postId])
+	.then(([results, fields]) => {
+		return results.length;
+	})
+	.catch((err) => Promise.reject(err));
+};
+
 module.exports = CommentModel;

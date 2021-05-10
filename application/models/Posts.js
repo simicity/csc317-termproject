@@ -1,4 +1,5 @@
 var db = require('../config/database');
+const {getNumberOfCommentById} = require('../models/Comments');
 const PostModel = {};
 
 PostModel.create = (title, description, photopath, thumbnail, fk_userId) => {
@@ -24,6 +25,12 @@ PostModel.getNRecentPosts = (numberOfPost) => {
 	let baseSQL = "SELECT id, title, description, thumbnail, created FROM posts ORDER BY created DESC LIMIT " + numberOfPost;
 	return db.execute(baseSQL, [])
 	.then(([results, fields]) => {
+		results.forEach((result) => {
+			getNumberOfCommentById(result.id)
+			.then((length) => {
+				result.comment = length;
+			})
+		})
 		return Promise.resolve(results);
 	})
 	.catch((err) => Promise.reject(err));
