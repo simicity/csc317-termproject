@@ -1,11 +1,12 @@
 const mysql = require('mysql2');
+const dbConfig = require('./dbconfig');
 
 const pool = mysql.createPool ({
 	connectionLimit: 50,
-	host: 'localhost',
-	user: 'photoapp',
-	password: 'CSc317@@@',
-	database: 'csc317db',
+	host: dbConfig.host,
+	user: dbConfig.user,
+	password: dbConfig.password,
+	database: dbConfig.database,
 	debug: false,
 });
 
