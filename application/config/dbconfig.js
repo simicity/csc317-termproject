@@ -1,9 +1,9 @@
 
 const dbConfig = {
-	host: 'localhost',
-	user: 'photoapp',
-	password: 'CSc317@@@',
-	database: 'csc317db',
+	host: 'localhost'/* REPLACE WITH YOUR HOST NAME */,
+	user: 'photoapp'/* REPLACE WITH YOUR USER NAME */,
+	password: 'CSc317@@@'/* REPLACE WITH YOUR PASSWORD */,
+	database: 'csc317db'/* REPLACE WITH YOUR DATABASE NAME */,
 }
 
 module.exports = dbConfig;

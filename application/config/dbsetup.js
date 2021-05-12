@@ -10,22 +10,11 @@ const db = mysql.createConnection({
 
 var err_caught = false;
 
-//create database if not exists
-try {
-  db.query("CREATE DATABASE IF NOT EXISTS " + dbConfig.database + ";");
-}
-catch {
-  err_caught = true;
-  console.log(err);
-}
-
-console.log("Database created");
-
 //switch to the created database
 try {
   db.changeUser({database : dbConfig.database});
 }
-catch {
+catch(err) {
   err_caught = true;
   console.log(err);
 }
