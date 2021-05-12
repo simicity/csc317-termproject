@@ -50,10 +50,18 @@ PostModel.getPostById = (postId) => {
 	.catch((err) => Promise.reject(err));
 }
 
-PostModel.deletePostById = (postId) => {
-	return db.execute("DELETE FROM posts WHERE id = ?", [postId])
+PostModel.deletePostById = (userId, postId) => {
+	return db.execute ("SELECT fk_userid FROM posts WHERE id = ?", [postId])
+	.then(([results,fields]) => {
+		return results[0].fk_userid == userId;
+	})
+	.then((currentUserIsOwner) => {
+		if(currentUserIsOwner) {
+			return db.execute("DELETE FROM posts WHERE id = ?", [postId]);
+		}
+	})
 	.then(([results, fields]) => {
-		return Promise.resolve(results);
+		return Promise.resolve(results.affectedRows);
 	})
 	.catch((err) => Promise.reject(err));
 }

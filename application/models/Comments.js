@@ -40,7 +40,7 @@ CommentModel.getNumberOfCommentById = (postId) => {
 CommentModel.deleteCommentsForPost = (postId) => {
 	return db.execute("DELETE FROM comments WHERE fk_postid = ?", [postId])
 	.then(([results, fields]) => {
-		return Promise.resolve(results);
+		return Promise.resolve(results.affectedRows);
 	})
 	.catch((err) => Promise.reject(err));
 }

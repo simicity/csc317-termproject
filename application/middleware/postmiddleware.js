@@ -47,12 +47,17 @@ postMiddleware.getCommentsByPostId = async function(req, res, next) {
 	}
 }
 
-postMiddleware.deletePostByPostId = async function(postId) {
+postMiddleware.deletePostByPostId = async function(userId, postId) {
 	try {
-		await deletePostById(postId);
-		await deleteCommentsForPost(postId);
+		let result = await deletePostById(userId, postId);
+		if(result > 0) {
+			await deleteCommentsForPost(postId);
+		}
+		console.log("deletePostByPostId:"+result);
+		return result;
 	}
 	catch(err) {
+		return false;
 	}
 }
 
