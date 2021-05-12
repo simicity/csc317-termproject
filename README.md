@@ -19,10 +19,16 @@ Please follow the instructions below and fill in the information requested when 
 # Build/Run Instructions
 
 ## Build Instructions
-1. Clone the repository to your computer
-2. Run the commands below
-   `cd csc317-termproject-simicity/application`
+1. Clone the repository to your computer.
+2. Navigate to the *application* directory and run the command below.
    `npm install`
+3. Open config/dbconfig.js and set appropriate values to the host, user, and password if needed.
+   You can use the default values, but you must make sure the user is granted to create tables described in config/SQL Dump. 
+4. Run the command below to create the database.
+   `node config/dbsetup.js`
+   When "success!" is displayed without any error, it means the tables were successfully created. Exit by ctl+c.
+5. If error occurs and/or tables cannot be created, create the tables manually.
+   MySQL tables information is in config/SQL Dump.
 
 
 ## Run Instructions
