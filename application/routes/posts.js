@@ -5,6 +5,7 @@ var { deletePostByPostId } = require('../middleware/postmiddleware');
 var sharp = require('sharp');
 var multer = require('multer');
 var crypto = require('crypto');
+var isLoggedIn = require('../middleware/routeProtectors').userIsLoggedIn;
 var PostError = require('../helpers/error/PostError');
 var PostModel = require('../models/Posts');
 var storage = multer.diskStorage({
@@ -71,7 +72,7 @@ router.get('/search', async(req, res, next) => {
 		let searchTerm = req.query.search;
 		if(!searchTerm) {
 			res.send({
-				message: "No search term gievn",
+				message: "No search term given",
 				results: []
 			});
 		}
@@ -86,7 +87,7 @@ router.get('/search', async(req, res, next) => {
 			else {
 				let results = await PostModel.getNRecentPosts(100);
 				res.send({
-					message: "No results were found for your search but here are the 8 most recent posts",
+					message: "No results were found for your search but here are recent posts",
 					results: results
 				});
 			}
@@ -97,23 +98,25 @@ router.get('/search', async(req, res, next) => {
 	}
 });
 
-router.get('/delete/:id(\\d+)', function(req, res, next) {
-	if(!req.session.username) {
-		errorPrint("must be logged in to delete a post");
-		res.json({
-			code: -1,
-			status: "danger",
-			message: "Must be logged in to delete a post"
-		});
-	}
-	else {
-		try {
-			deletePostByPostId(req.params.id);
+router.use('/delete', isLoggedIn);
+router.get('/delete/:id(\\d+)', async function(req, res, next) {
+	try {
+		let result = await deletePostByPostId(req.session.userId, req.params.id);
+		if(result > 0) {
 			res.redirect('/');
 		}
-		catch(err) {
-			next(err);
+		else {
+			throw new PostError('You cannot delete another user\'s post', '/', 400);
 		}
+	}
+	catch(err) {
+		if(err instanceof PostError) {
+			errorPrint(err.getMessage());
+			req.flash('error', err.getMessage());
+			res.status(err.getStatus());
+			res.redirect(err.getRedirectURL());
+		}
+		next(err);
 	}
 });
 

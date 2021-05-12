@@ -54,7 +54,7 @@ function executeSearch() {
 		});
 		mainContent.innerHTML = newMainContentHTML;
 		if(data_json.message) {
-			addFlashFromFrontEnd(data_json.message, data.status);
+			addFlashFromFrontEnd(data_json.message, "info");
 		}
 	})
 	.catch((err) => console.log(err));
