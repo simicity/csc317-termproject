@@ -98,6 +98,7 @@ router.post('/login', (req, res, next) => {
 			res.locals.logged = true;
 			req.flash('success', 'You have been successfully logged in!');
 			res.redirect('/');
+			next();
 		}
 		else {
 			throw new UserError(
@@ -116,6 +117,8 @@ router.post('/login', (req, res, next) => {
 			res.redirect(err.getRedirectURL());
 		}
 		else {
+			req.flash('error', 'Username and/or password are incorrect');
+			res.redirect('/login');
 			next(err);
 		}
 	});
